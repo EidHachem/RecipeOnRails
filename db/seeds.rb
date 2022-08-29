@@ -9,6 +9,8 @@
 p "Seeding database..."
 
 User.create(name: "John Doe", email: "johndoe@gmail.com", password: "123456", password_confirmation: "123456")
+Recipe.create(name: "Pizza", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a pizza recipe", public: true, user_id: 1)
 
 p "Created #{User.count} users"
+p "Created #{Recipe.count} recipes"
 p "Database seeded!"
