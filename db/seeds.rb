@@ -15,6 +15,8 @@ User.create(name: "Jane Doe", email: "janedoe@gmail.com", password: "123456", pa
 p "Creating recipes..."
 Recipe.create(name: "Pizza", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a pizza recipe", public: true, user_id: 1)
 Recipe.create(name: "Pasta", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a pasta recipe", public: true, user_id: 2)
+Recipe.create(name: "Burger", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a burger recipe", public: false, user_id: 1)
+Recipe.create(name: "Salad", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a salad recipe", public: false, user_id: 2)
 
 p "Creating foods..."
 Food.create(name: "Flour", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 1)

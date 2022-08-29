@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get 'recipes/index', to: 'recipes#public'
   resources :users do
     resources :recipes
   end
