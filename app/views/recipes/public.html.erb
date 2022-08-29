@@ -1,7 +1,11 @@
-<h1>Public Recipe List</h1>
+<div class="wrapper">
 
-<% @public_recipes.each do |recipe| %>
+  <h1>Public Recipe List</h1>
+
+  <% @public_recipes.each do |recipe| %>
   <p>
     <%= recipe.name %>
   </p>
 <% end %>
+
+</div>
