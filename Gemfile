@@ -50,8 +50,6 @@ gem 'bootsnap', require: false
 
 gem 'devise'
 
-gem 'bullet'
-
 gem 'cancancan'
 
 group :development, :test do
@@ -59,6 +57,10 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rspec-rails'
+
+  gem 'bullet'
+
+  gem 'faker'
 end
 
 group :development do
