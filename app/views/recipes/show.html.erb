@@ -8,7 +8,7 @@
         </h4>
         <h4>Cooking Time: <%= @recipe.cooking_time %>
         </h4>
-        <h4>Steps go here...</h4>
+        <h4>Description: <%= @recipe.description %></h4>
       </div>
       <div>
         <% if @recipe.public %>
@@ -18,4 +18,45 @@
             <% end %>
       </div>
     </div>
+    <div class="d-flex gap-5 mt-5 mb-5">
+    <div>
+      <%= link_to "Generate Shopping List", user_recipe_shopping_list_path(@recipe.user, @recipe), class: "btn btn-primary" %>
+    </div>
+    <% if can? :update, @recipe%>
+      <div>
+        <%= link_to "Add Ingredient", new_user_recipe_recipe_food_path(@recipe.user, @recipe.id), class: "btn btn-primary" %>
+      </div>
+    <%end%>
+  </div>
+    <table class="table table-striped table-bordered", style="text-align: center;">
+      <% if @recipe.recipes_foods.any? %>
+         <thead>
+             <tr>
+             <th>Food</th>
+             <th>Quantity</th>
+             <th>Value</th>
+             <th>Action</th>
+             </tr>
+         </thead>
+     
+         <tbody>
+         <% @recipe.recipes_foods.each do |fd|%>
+         <tr>
+           <td><%= fd.food.name%></th>
+           <td><%= fd.quantity%> <%= fd.food.measurement_unit  %></td>
+           <td>$<%= fd.quantity* fd.food.price %></td>
+           <td class="mb-3 col-sm-3">
+           <% if can? :destroy, @recipe %>
+            <div class="d-flex justify-content-center gap-2">
+             <%= button_to "Delete", user_recipe_recipe_food_path(@recipe.user, @recipe.id, fd.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+             <%= link_to "Modify" , edit_user_recipe_recipe_food_path(@recipe.user, @recipe.id, fd.id), class: "btn btn-primary" %>
+           <%end%>
+          </div>
+           </td>
+         </tr>
+       
+         </tbody>
+         <%end%>
+       <%end%>
+     </table>
   </div>
