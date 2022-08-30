@@ -20,3 +20,12 @@
   align-items: center;
   margin: 0 auto;
 }
+
+.set-width {
+  width: 50rem;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
