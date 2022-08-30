@@ -20,7 +20,7 @@ class FoodsController < ApplicationController
       link_to('Back', user_food_path(user_id: @user.id))
     end
   end
-  
+
   def destroy
     @food = Food.find(params[:id])
     @food.delete

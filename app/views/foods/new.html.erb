@@ -1,10 +1,11 @@
 <div>
   <div>
-    <%= form_with model: @foods, url: user_foods_path, data: { turbo: false } do |t| %> <%=
-    t.text_field :name, :placeholder => 'Name', :class => 'article_title' %> <%= t.number_field
-    :price, in: 1.0..20.0, step: 0.5, :placeholder => 'Price', :class => 'article_title' %> <%=
-    t.text_field :quantity, :placeholder => 'Qty', :class => 'article_title' %> <%= t.text_field
-    :measurement_unit, :placeholder => 'Unit', :class => 'article_title' %> <%= t.submit 'Add',
-    :class => 'btn btn-primary' %> <% end %>
-  </div>
-</div>
+    <%= form_with  model: @foods, url: user_foods_path, data: { turbo: false } do |t| %>
+        <%= t.text_field :name, :placeholder => 'Name', :class => 'article_title'  %>
+        <%= t.number_field :price, in: 1.0..20.0, step: 0.5, :placeholder => 'Price', :class => 'article_title'  %>
+        <%= t.text_field :quantity, :placeholder => 'Qty', :class => 'article_title'  %>
+        <%= t.text_field :measurement_unit, :placeholder => 'Unit', :class => 'article_title'  %>
+        <%= t.submit 'Add', :class => 'btn btn-primary' %>
+<% end %>
+      </div>
+    </div> 
