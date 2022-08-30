@@ -1,0 +1,12 @@
+<h2 style="text-align: center;" class="mt-5 fw-bold">Food details</h2>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;" class="mt-5">
+  <div>
+    <%= form_with  model: @foods, url: user_foods_path, data: { turbo: false } do |t| %>
+    <div class="mb-3"><%= t.text_field :name, :placeholder => 'Name', :class => 'form-control', :style => 'width: 30rem'  %></div>
+    <div class="mb-3"><%= t.number_field :price, in: 1.0..20.0, step: 0.5, :placeholder => 'Price', :class => 'form-control', :style => 'width: 30rem'  %></div>
+    <div class="mb-3"><%= t.text_field :quantity, :placeholder => 'Qty', :class => 'form-control', :style => 'width: 30rem'  %></div>
+    <div class="mb-3"><%= t.text_field :measurement_unit, :placeholder => 'Unit', :class => 'form-control', :style => 'width: 30rem'  %></div>
+    <div class="mb-3" style="text-align: center;"><%= t.submit 'Add', :class => 'btn btn-primary', :style => 'width: 6rem' %></div>
+<% end %>
+      </div>
+    </div> 
