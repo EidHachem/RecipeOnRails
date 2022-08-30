@@ -7,6 +7,10 @@ class FoodsController < ApplicationController
     @food = Food.find(params[:id])
   end
 
+  def new
+    @food = Food.new
+  end
+
   def destroy
     @food = Food.find(params[:id])
     @food.delete
