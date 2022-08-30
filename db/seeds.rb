@@ -26,8 +26,8 @@ Food.create(name: "Tomato", price: 1.5, quantity: 1, measurement_unit: "kg", use
 Food.create(name: "Cheese", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 1)
 Food.create(name: "Bread", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 2)
 
-p "Created #{User.count} users"
-p "Created #{Recipe.count} recipes"
-p "Created #{Food.count} foods"
-
 p "Database seeded!"
+
+p "Successfully created #{User.count} users"
+p "Successfully created #{Recipe.count} recipes"
+p "Successfully created #{Food.count} foods"

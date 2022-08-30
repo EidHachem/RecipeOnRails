@@ -8,6 +8,9 @@
         <p class="card-text">Measurement Unit: <%= food.measurement_unit %></p>
         <p class="card-text">Price: $<%= food.price%></p>
         <p class="card-text">Quantity: <%= food.quantity%></p>
+        <% if can? :manage, food %>
+          <%= button_to "Delete", user_food_path(food.user, food.id), method: :delete, class: "btn btn-danger" %>
+        <% end %>
       </div>
     </div>
 </div>
