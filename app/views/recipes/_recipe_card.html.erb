@@ -4,7 +4,7 @@
         <h5>
           <%= link_to recipe.name, user_recipe_path(id: recipe.id, user_id: recipe.user.id), class: "card-title" %>
         </h5>
-        <h5>By: <%= recipe.user_id %></h5>
+        <h5>By: <%= recipe.user.name %></h5>
         <% if recipe.public %>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
