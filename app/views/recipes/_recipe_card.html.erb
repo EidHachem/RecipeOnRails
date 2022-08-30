@@ -1,25 +1,29 @@
 <div class="wrapper">
-    <div class="card set-width my-3">
-      <div class="card-body">
+  <div class="card set-width my-3">
+    <div class="card-body space-between">
+      <div>
         <h5>
           <%= link_to recipe.name, user_recipe_path(id: recipe.id, user_id: recipe.user.id), class: "card-title" %>
         </h5>
-        <h5>By: <%= recipe.user_id %></h5>
+        <h5>By: <%= recipe.user_id %>
+        </h5>
+      </div>
+      <div>
         <% if recipe.public %>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked disabled>
-            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Public</label>
-          </div>
-        <% else %>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" disabled>
-            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Private</label>
-          </div>
-        <% end %>
-        <p class="card-text"><%= recipe.description %></p>
-        <% if can? :manage, recipe %>
-          <%= button_to "Delete", user_recipe_path(recipe.user, recipe.id), method: :delete, class: "btn btn-danger" %>
-        <% end %>
+          <span class="badge text-bg-warning p-2 px-4">Public</span>
+          <% else %>
+            <span class="badge text-bg-secondary p-2 px-4">Private</span>
+            <% end %>
       </div>
     </div>
+
+    <div class="card-body">
+      <p class="card-text">
+        <%= recipe.description %>
+      </p>
+      <% if can? :manage, recipe %>
+        <%= button_to "Delete" , user_recipe_path(recipe.user, recipe.id), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+    </div>
+  </div>
 </div>
