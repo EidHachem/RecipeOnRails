@@ -7,6 +7,10 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.where(public: true)
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
