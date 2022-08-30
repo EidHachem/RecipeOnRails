@@ -17,6 +17,9 @@
           </div>
         <% end %>
         <p class="card-text"><%= recipe.description %></p>
+        <% if can? :manage, recipe %>
+          <%= button_to "Delete", user_recipe_path(recipe.user, recipe.id), method: :delete, class: "btn btn-danger" %>
+        <% end %>
       </div>
     </div>
 </div>
