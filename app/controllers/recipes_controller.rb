@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.includes([:user]).find(params[:id])
+    @recipe_food = @recipe.foods.all.includes([:food]).sort_by { |recipe_food| recipe_food.food.name }
   end
 
   def destroy
