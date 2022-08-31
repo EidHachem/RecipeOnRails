@@ -8,7 +8,7 @@ class ShoppingListController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe_food = RecipeFood.includes([:food]).sort_by { |recipe_food| recipe_food.food.name }
+    @recipe_food = @recipe.recipes_foods.all.sort_by { |recipe_food| recipe_food.food.name }
     @food = Food.includes([:food])
     @total_price = 0
     @recipe_food.each do |fd|
