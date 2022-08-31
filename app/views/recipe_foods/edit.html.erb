@@ -15,7 +15,7 @@
     <div class="form-div">
   <div class="mb-3 col-sm-8">
     <%= form.label :food, class:"form-label" %><br>
-    <%= form.select :food_id, current_user.foods.collect {|food| [food.name, food.id]}, { include_blank: true} , class:"form-select" %>
+    <%= form.select :food_id, options_for_select(current_user.foods.collect {|food| [food.name, food.id]}, @recipe_food.food_id), { include_blank: true }, class:"form-control" %>
   </div>
   <div class="mb-3 col-sm-8">
     <%= form.label :quantity, class:"form-label" %>
