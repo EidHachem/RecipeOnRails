@@ -14,6 +14,12 @@
         <% else %>
         <span class="badge text-bg-secondary p-2 px-4">Private</span>
         <% end %>
+        <h4 class="mt-3">Total foods: <%= recipe.recipes_foods.length %> </h4>
+        <% sum = 0 %>
+        <h4>Total price : <% recipe.recipes_foods.each do |food| %>
+        <% sum += food.food.price %>
+        <% end %>
+        <%= sum %></h4>
       </div>
     </div>
     <div class="card-body">
