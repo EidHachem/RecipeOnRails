@@ -7,7 +7,7 @@ RSpec.describe Food, type: :model do
   end
   context 'validations' do
     it 'is valid with valid attributes' do
-      food = Food.create(name: 'Apples', measurement_unit: 'pieces', price: 18, quantity: 24, user_id: @user.id)
+      food = Food.new(name: 'Apples', measurement_unit: 'pieces', price: 18, quantity: 24, user_id: @user.id)
       expect(food).to be_valid
     end
 
