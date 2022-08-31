@@ -33,4 +33,10 @@ class RecipeFoodsController < ApplicationController
     flash[:success] = 'Recipe Food deleted successfully.'
     redirect_to user_recipe_url(@recipe.user, @recipe)
   end
+
+  private
+
+  def recipe_food_params
+    params.permit(:quantity, :food_id)
+  end
 end

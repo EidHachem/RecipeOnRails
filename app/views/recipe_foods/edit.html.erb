@@ -1,5 +1,5 @@
 <h2 class="heading">Edit Recipe Food</h2>
-<%= form_with url: user_recipe_recipe_foods_path, data: { turbo: false }, local: true do |form| %>
+<%= form_with url: user_recipe_recipe_food_path, method: :patch, data: { turbo: false }, local: true do |form| %>
   <% if @recipe_food.errors.any? %>
     <div id="error_explanation">
       <h2>
