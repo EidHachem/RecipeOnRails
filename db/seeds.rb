@@ -20,8 +20,10 @@ end
 # User.create(name: "Jane Smith", email: "janesmith@gmailcom", password: "123456", password_confirmation: "123456")
 
 p "Creating recipes..."
-200.times do
-  Recipe.create(name: Faker::Food.dish, preparation_time: Faker::Number.between(from: 1, to: 10), cooking_time: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph, user_id: Faker::Number.between(from: 1, to: 5), public: Faker::Boolean.boolean)
+User.all.each do |user|
+  5.times do
+    user.recipes.create(name: Faker::Food.unique.dish, preparation_time: Faker::Number.between(from: 1, to: 10), cooking_time: Faker::Number.between(from: 1, to: 10), description: Faker::Food.description, public: Faker::Boolean.boolean)
+  end
 end
 
 # Recipe.create(name: "Pizza", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a pizza recipe", public: true, user_id: 1)
@@ -30,8 +32,10 @@ end
 # Recipe.create(name: "Salad", preparation_time: "30 minutes", cooking_time: "30 minutes", description: "This is a salad recipe", public: false, user_id: 2)
 
 p "Creating foods..."
-200.times do
-  Food.create(name: Faker::Food.ingredient, price: Faker::Number.between(from: 1, to: 1000), quantity: Faker::Number.between(from: 1, to: 100), measurement_unit: "kg", user_id: Faker::Number.between(from: 1, to: 5))
+User.all.each do |user|
+  50.times do
+    user.foods.create(name: Faker::Food.unique.ingredient, price: Faker::Number.between(from: 1, to: 10), quantity: Faker::Number.between(from: 1, to: 10), measurement_unit: Faker::Food.metric_measurement)
+  end
 end
 
 # Food.create(name: "Flour", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 1)
@@ -39,8 +43,14 @@ end
 # Food.create(name: "Cheese", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 1)
 # Food.create(name: "Bread", price: 1.5, quantity: 1, measurement_unit: "kg", user_id: 2)
 
+p "Creating recipe_foods..."
+200.times do
+  RecipeFood.create(quantity: Faker::Food.measurement, recipe_id: Recipe.ids.sample, food_id: Food.ids.sample)
+end
+
 p "Database seeded!"
 
 p "Successfully created #{User.count} users"
 p "Successfully created #{Recipe.count} recipes"
 p "Successfully created #{Food.count} foods"
+p "Successfully created #{RecipeFood.count} recipe_foods"
