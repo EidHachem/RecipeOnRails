@@ -14,6 +14,7 @@
           <% else %>
             <span class="badge text-bg-secondary p-2 px-4">Private</span>
             <% end %>
+            <h5>Total food items: <%= recipe.foods.count %> </h5>
       </div>
     </div>
 
@@ -25,6 +26,9 @@
       <% if can? :manage, recipe %>
         <%= button_to "Delete" , user_recipe_path(recipe.user, recipe.id), method: :delete, class: "btn btn-danger" %>
           <% end %>
+          <div class="d-flex justify-content-end">
+            <p class="opacity-50"><%= time_ago_in_words(recipe[:created_at]) %></p>
+          </div>
     </div>
   </div>
 </div>

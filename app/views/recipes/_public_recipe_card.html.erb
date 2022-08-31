@@ -10,10 +10,11 @@
       </div>
       <div>
         <% if recipe.public %>
-          <span class="badge text-bg-warning p-2 px-4">Public</span>
-          <% else %>
-            <span class="badge text-bg-secondary p-2 px-4">Private</span>
-            <% end %>
+        <span class="badge text-bg-warning p-2 px-4">Public</span>
+        <% else %>
+        <span class="badge text-bg-secondary p-2 px-4">Private</span>
+        <% end %>
+        <h5>Total food items: <%= recipe.foods.count %> </h5>
       </div>
     </div>
     <div class="card-body">
@@ -21,6 +22,9 @@
       <p class="card-text">
         <%= recipe.description %>
       </p>
+      <div class="d-flex justify-content-end">
+        <p class="opacity-50"><%= time_ago_in_words(recipe[:created_at]) %></p>
+      </div>
     </div>
   </div>
 </div>

@@ -1,10 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.where(user_id: current_user.id).order(created_at: :desc)
+    @recipes = Recipe.includes([:user]).where(user_id: current_user.id).order(created_at: :desc)
   end
 
   def public
-    @public_recipes = Recipe.where(public: true).order(created_at: :desc)
+    @public_recipes = Recipe.includes([:user]).where(public: true).order(created_at: :desc)
   end
 
   def new
@@ -13,7 +13,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.includes([:user]).find(params[:id])
+    @recipe_food = @recipe.foods.all.includes([:food]).sort_by { |recipe_food| recipe_food.food.name }
   end
 
   def destroy

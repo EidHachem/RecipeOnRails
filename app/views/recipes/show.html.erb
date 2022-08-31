@@ -29,7 +29,7 @@
     <%end%>
   </div>
     <table class="table table-striped table-bordered", style="text-align: center;">
-      <% if @recipe.recipes_foods.any? %>
+      <% if @recipe.foods.any? %>
          <thead>
              <tr>
              <th>Food</th>
@@ -38,9 +38,9 @@
              <th>Action</th>
              </tr>
          </thead>
-     
+
          <tbody>
-         <% @recipe.recipes_foods.each do |fd|%>
+         <% @recipe.foods.each do |fd|%>
          <tr>
            <td><%= fd.food.name%></th>
            <td><%= fd.quantity%> <%= fd.food.measurement_unit  %></td>
@@ -54,7 +54,7 @@
           </div>
            </td>
          </tr>
-       
+
          </tbody>
          <%end%>
        <%end%>
