@@ -8,7 +8,8 @@
         </h4>
         <h4>Cooking Time: <%= @recipe.cooking_time %>
         </h4>
-        <h4>Description: <%= @recipe.description %></h4>
+        <br>
+        <h5>Description: <br><%= @recipe.description %></h5>
       </div>
       <div>
         <% if @recipe.public %>
@@ -16,6 +17,12 @@
           <% else %>
             <span class="badge text-bg-secondary p-2 px-4">Private</span>
             <% end %>
+          <h5 class="mt-3">Total foods: <br><%= @recipe.recipes_foods.length %> </h5>
+          <% sum = 0 %>
+          <h5>Total price : <br>$ <% @recipe.recipes_foods.each do |food| %>
+          <% sum += food.food.price %>
+          <% end %>
+          <%= sum %></h5>
       </div>
     </div>
     <div class="d-flex gap-5 mt-5 mb-5">
@@ -29,9 +36,10 @@
     <%end%>
   </div>
     <table class="table table-striped table-bordered", style="text-align: center;">
-      <% if @recipe.foods.any? %>
+      <% if @recipe.recipes_foods.any? %>
          <thead>
              <tr>
+             <th>No.</th>
              <th>Food</th>
              <th>Quantity</th>
              <th>Value</th>
@@ -40,8 +48,9 @@
          </thead>
 
          <tbody>
-         <% @recipe.foods.each do |fd|%>
+         <% @recipe.recipes_foods.each_with_index do |fd, i|%>
          <tr>
+           <td><%= i+1%></th>
            <td><%= fd.food.name%></th>
            <td><%= fd.quantity%> <%= fd.food.measurement_unit  %></td>
            <td>$<%= fd.quantity* fd.food.price %></td>
