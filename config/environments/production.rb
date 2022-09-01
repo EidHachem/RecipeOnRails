@@ -92,5 +92,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.default_url_options = { :host => "https://ancient-fjord-64276.herokuapp.com/" }
+  config.action_mailer.default_url_options = { :host => "ancient-fjord-64276.herokuapp.com" }
 end
