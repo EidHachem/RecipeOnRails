@@ -1,0 +1,27 @@
+<div class="container">
+  <table class="table table-striped", style="text-align: center;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Unit</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td>$ <%= food.price %></td>
+          <td><%= food.quantity %></td>
+          <td><%= food.measurement_unit %></td>
+          <td>
+            <%= button_to "Delete", user_food_path(food.user, food.id), method: :delete, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    </div>
+</div>

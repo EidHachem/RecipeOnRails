@@ -1,0 +1,71 @@
+<%= stylesheet_link_tag "recipe.css" %>
+  <div class="wrapper">
+    <h1>Recipe <%= @recipe.name %>
+    </h1>
+    <div class="recipe-container">
+      <div>
+        <h4>Preparation Time: <%= @recipe.preparation_time %>
+        </h4>
+        <h4>Cooking Time: <%= @recipe.cooking_time %>
+        </h4>
+        <br>
+        <h5>Description: <br><%= @recipe.description %></h5>
+      </div>
+      <div>
+        <% if @recipe.public %>
+          <span class="badge text-bg-warning p-2 px-4">Public</span>
+          <% else %>
+            <span class="badge text-bg-secondary p-2 px-4">Private</span>
+            <% end %>
+          <h5 class="mt-3">Total foods: <br><%= @recipe.recipes_foods.length %> </h5>
+          <% sum = 0 %>
+          <h5>Total price : <br>$ <% @recipe.recipes_foods.each do |food| %>
+          <% sum += food.food.price %>
+          <% end %>
+          <%= sum %></h5>
+      </div>
+    </div>
+    <div class="d-flex gap-5 mt-5 mb-5">
+    <div>
+      <%= link_to "Generate Shopping List", user_recipe_shopping_list_path(@recipe.user, @recipe), class: "btn btn-primary" %>
+    </div>
+    <% if can? :update, @recipe%>
+      <div>
+        <%= link_to "Add Ingredient", new_user_recipe_recipe_food_path(@recipe.user, @recipe.id), class: "btn btn-primary" %>
+      </div>
+    <%end%>
+  </div>
+    <table class="table table-striped table-bordered", style="text-align: center;">
+      <% if @recipe.recipes_foods.any? %>
+         <thead>
+             <tr>
+             <th>No.</th>
+             <th>Food</th>
+             <th>Quantity</th>
+             <th>Value</th>
+             <th>Action</th>
+             </tr>
+         </thead>
+
+         <tbody>
+         <% @recipe.recipes_foods.each_with_index do |fd, i|%>
+         <tr>
+           <td><%= i+1%></th>
+           <td><%= fd.food.name%></th>
+           <td><%= fd.quantity%> <%= fd.food.measurement_unit  %></td>
+           <td>$<%= fd.quantity* fd.food.price %></td>
+           <td class="mb-3 col-sm-3">
+           <% if can? :destroy, @recipe %>
+            <div class="d-flex justify-content-center gap-2">
+             <%= button_to "Delete", user_recipe_recipe_food_path(@recipe.user, @recipe.id, fd.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+             <%= link_to "Modify" , edit_user_recipe_recipe_food_path(@recipe.user, @recipe.id, fd.id), class: "btn btn-primary" %>
+           <%end%>
+          </div>
+           </td>
+         </tr>
+
+         </tbody>
+         <%end%>
+       <%end%>
+     </table>
+  </div>

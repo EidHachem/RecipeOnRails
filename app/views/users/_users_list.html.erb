@@ -1,0 +1,7 @@
+<% if user == current_user %>
+      <li class="list-group-item active mb-3" aria-current="true"><%= user.name %>
+        <span>(Current User)</span>
+      </li>
+<% else %>
+    <li class="list-group-item mb-3"><%= user.name %></li>
+<% end %>

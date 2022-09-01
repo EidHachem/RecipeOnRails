@@ -1,0 +1,28 @@
+<h2 class="heading">Edit Recipe Food</h2>
+<%= form_with url: user_recipe_recipe_food_path, method: :patch, data: { turbo: false }, local: true do |form| %>
+  <% if @recipe_food.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@recipe_food.errors.count, "error") %> prohibited this recipe_food from being saved:
+      </h2>
+      <ul>
+        <% @recipe_food.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="form-div">
+  <div class="mb-3 col-sm-8">
+    <%= form.label :food, class:"form-label" %><br>
+    <%= form.select :food_id, options_for_select(current_user.foods.collect {|food| [food.name, food.id]}, @recipe_food.food_id), { include_blank: true }, class:"form-control" %>
+  </div>
+  <div class="mb-3 col-sm-8">
+    <%= form.label :quantity, class:"form-label" %>
+    <%= form.number_field :quantity, required: true, placeholder: '1',  min: 1, class:"form-control" %>
+  </div>
+  <div class="mb-3 col-sm-2">
+    <%= form.submit class:"btn btn-primary form-control" %>
+  </div>
+</div>
+<% end %>

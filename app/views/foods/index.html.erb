@@ -1,0 +1,10 @@
+<div class="wrapper">
+
+  <h1>Food List</h1>
+  <%= link_to "New Food", new_user_food_path, :class => 'btn btn-primary', :style => "align-self: self-end; margin-right: 6.5rem; margin-bottom: 3rem;" %>
+    <%= render partial: 'foods/food_card', locals: { food: @food } %>
+
+  <% if @foods.empty? %>
+    <h1>There are no foods to show</h1>
+  <% end %>
+</div>
