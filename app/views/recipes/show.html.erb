@@ -39,6 +39,7 @@
       <% if @recipe.recipes_foods.any? %>
          <thead>
              <tr>
+             <th>No.</th>
              <th>Food</th>
              <th>Quantity</th>
              <th>Value</th>
@@ -47,8 +48,9 @@
          </thead>
 
          <tbody>
-         <% @recipe.recipes_foods.each do |fd|%>
+         <% @recipe.recipes_foods.each_with_index do |fd, i|%>
          <tr>
+           <td><%= i+1%></th>
            <td><%= fd.food.name%></th>
            <td><%= fd.quantity%> <%= fd.food.measurement_unit  %></td>
            <td>$<%= fd.quantity* fd.food.price %></td>
